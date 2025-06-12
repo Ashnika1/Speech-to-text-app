@@ -61,7 +61,8 @@ function App() {
       formData.append("language", language);
       formData.append("audio", audioData instanceof Blob ? audioData : file);
 
-      const response = await fetch("http://localhost:5000/upload", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/upload`, {
+
         method: "POST",
         body: formData,
       });

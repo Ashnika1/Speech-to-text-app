@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { FaMicrophone } from "react-icons/fa";
 import { MdCloudUpload, MdClear, MdDownload } from "react-icons/md";
-
+import.meta.env.VITE_BACKEND_URL
 function App() {
   const [transcript, setTranscript] = useState("");
   const [isRecording, setIsRecording] = useState(false);
@@ -62,10 +62,10 @@ function App() {
       formData.append("audio", audioData instanceof Blob ? audioData : file);
 
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/upload`, {
+  method: "POST",
+  body: formData,
+});
 
-        method: "POST",
-        body: formData,
-      });
 
       const data = await response.json();
       setTranscript(data.transcript || "No transcription available.");
